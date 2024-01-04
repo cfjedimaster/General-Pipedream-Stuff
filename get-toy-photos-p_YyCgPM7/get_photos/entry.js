@@ -9,15 +9,6 @@ export default defineComponent({
   async run({steps, $}) {
 
     const ALBUM = 'AMfAEpztLpk-HzVAka8zgRTM32Q2dL4LvDAJhp-lgloXaT27jEWFnFvpDbgOOfFYxoVmFwKr4E34';
-    /*
-    let result = await axios($, {
-      url: `https://photoslibrary.googleapis.com/v1/albums`,
-      headers: {
-        Authorization: `Bearer ${this.google_photos.$auth.oauth_access_token}`,
-      },
-    });
-    console.log(result);
-    */
 
     let result = await axios($, {
       url: 'https://photoslibrary.googleapis.com/v1/mediaItems:search',
