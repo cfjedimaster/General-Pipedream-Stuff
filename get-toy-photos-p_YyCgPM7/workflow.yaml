@@ -1,0 +1,14 @@
+schema: workflow/2022.04
+name: Get Toy Photos
+settings:
+  error_notification: true
+triggers:
+- id: hi_a1HkNY8
+steps:
+- namespace: google
+  runtime: nodejs18.x
+  uses: "./google/entry.js"
+  props:
+    google:
+      authProvisionId: apn_wGhQvWa
+
