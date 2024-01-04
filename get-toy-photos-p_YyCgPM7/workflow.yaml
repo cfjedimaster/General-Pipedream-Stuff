@@ -5,10 +5,10 @@ settings:
 triggers:
 - id: hi_a1HkNY8
 steps:
-- namespace: google
+- namespace: google_photos
   runtime: nodejs18.x
-  uses: "./google/entry.js"
+  uses: "./google_photos/entry.js"
   props:
-    google:
-      authProvisionId: apn_wGhQvWa
+    google_photos:
+      authProvisionId: apn_z8h1AD
 
