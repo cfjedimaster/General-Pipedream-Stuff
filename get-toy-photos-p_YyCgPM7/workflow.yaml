@@ -5,10 +5,16 @@ settings:
 triggers:
 - id: hi_a1HkNY8
 steps:
-- namespace: google_photos
+- namespace: get_photos
   runtime: nodejs18.x
-  uses: "./google_photos/entry.js"
+  uses: "./get_photos/entry.js"
   props:
     google_photos:
       authProvisionId: apn_z8h1AD
+- namespace: return_http_response
+  runtime: nodejs18.x
+  uses: http-return-http-response@0.0.3
+  props:
+    resStatusCode: 200
+    resBody: '{ "photos": steps.get_photos.$return_value }'
 
