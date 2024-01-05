@@ -11,6 +11,9 @@ steps:
   props:
     google_photos:
       authProvisionId: apn_z8h1AD
+    album: AMfAEpztLpk-HzVAka8zgRTM32Q2dL4LvDAJhp-lgloXaT27jEWFnFvpDbgOOfFYxoVmFwKr4E34
+    cache:
+      storeId: ds_n5uXlr
 - namespace: return_http_response
   runtime: nodejs18.x
   uses: http-return-http-response@0.0.3
