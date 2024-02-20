@@ -2,6 +2,7 @@ schema: workflow/2022.04
 name: Random Album Cover (Mastodon)
 settings:
   error_notification: true
+  lambda_timeout: 40
 triggers:
 - id: ti_xQTMXB8
 steps:
