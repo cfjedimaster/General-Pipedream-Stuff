@@ -1,0 +1,54 @@
+schema: workflow/2022.04
+name: Random Album Cover (Mastodon)
+settings:
+  error_notification: true
+triggers:
+- id: ti_xQTMXB8
+steps:
+- namespace: create_search_string
+  runtime: python3.12
+  uses: "./create_search_string/entry.py"
+- namespace: select_offset
+  runtime: python3.12
+  uses: "./select_offset/entry.py"
+- namespace: spotify_get_random_album
+  runtime: python3.12
+  uses: "./spotify_get_random_album/entry.py"
+  props:
+    __configurableProps:
+    - app: spotify
+      name: spotify
+      type: app
+      authType: oauth
+      appId: app_mqeh75
+    spotify:
+      authProvisionId: apn_3JhQwL
+- namespace: continue_based_on_condition
+  runtime: nodejs20.x
+  uses: filter-continue-based-on-condition@0.0.2
+  _props_cursor: dyp_EQUvd75
+  props:
+    initialValue: "{{steps.spotify_get_random_album.$return_value.albums.items.length}}"
+    condition: GREATER_THAN_EQUALS
+    secondValue: '1'
+- namespace: select_random_album_backup
+  disabled: true
+  runtime: nodejs20.x
+  uses: helper_functions-random-item-from-list@0.0.3
+  props:
+    list:
+    - "{{steps.spotify_get_random_album.$return_value.albums.items}}"
+    quantity: 1
+- namespace: select_random_album
+  runtime: nodejs20.x
+  uses: "./select_random_album/entry.js"
+- namespace: download_file_to_tmp
+  runtime: nodejs20.x
+  uses: helper_functions-download-file-to-tmp@0.3.0
+  props:
+    url: "{{steps.select_random_album_temp.$return_value.images[0].url}}"
+    filename: cover.jpg
+- namespace: postToot
+  runtime: nodejs20.x
+  uses: "./postToot/entry.js"
+
