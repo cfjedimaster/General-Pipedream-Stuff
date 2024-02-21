@@ -19,7 +19,7 @@ steps:
       __lv:
         label: Sheet1
         value: Sheet1
-    range: A2:C10000
+    range: A2:D10000
 - namespace: filter_and_map
   runtime: nodejs20.x
   uses: "./filter_and_map/entry.js"
