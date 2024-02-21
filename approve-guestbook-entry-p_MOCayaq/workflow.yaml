@@ -15,6 +15,10 @@ steps:
       __lv:
         label: Guestbook
         value: 1RLspI8iuC-Ng8Fco8zV-ynpxdPLm7MgoXm5jnlo0Tpk
+    sheetName:
+      __lv:
+        label: Sheet1
+        value: Sheet1
     cell: "{{steps.trigger.event.query.range.split(':').pop()}}"
     newCell: 'TRUE'
 - namespace: code
