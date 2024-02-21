@@ -18,7 +18,7 @@ Comments:<br/>
 </p>
 
 <p>
-<a href="">Click to Approve</a>
+<a href="${process.env.APPROVE_GB}/?range=${encodeURIComponent(steps.add_single_row.$return_value.updatedRange)}">Click to Approve</a>
 </p>
 
     `;
