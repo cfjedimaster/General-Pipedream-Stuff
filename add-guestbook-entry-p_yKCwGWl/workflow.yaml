@@ -1,0 +1,28 @@
+schema: workflow/2022.04
+name: Add Guestbook Entry
+settings:
+  error_notification: true
+triggers:
+- id: hi_mJH1wmn
+steps:
+- namespace: add_single_row
+  runtime: nodejs20.x
+  uses: google_sheets-add-single-row@2.1.2
+  _props_cursor: dyp_MeUXlgy
+  props:
+    googleSheets:
+      authProvisionId: apn_DphexA
+    sheetId:
+      __lv:
+        label: Guestbook
+        value: 1RLspI8iuC-Ng8Fco8zV-ynpxdPLm7MgoXm5jnlo0Tpk
+    sheetName:
+      __lv:
+        label: Sheet1
+        value: Sheet1
+    hasHeaders: 'Yes'
+    col_0000: "{{steps.trigger.event.body.name}}"
+    col_0001: "{{steps.trigger.event.body.comment}}"
+    col_0002: "{{Date.now()}}"
+    col_0003: 'FALSE'
+
