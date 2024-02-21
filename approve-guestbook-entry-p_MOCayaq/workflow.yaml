@@ -4,4 +4,20 @@ settings:
   error_notification: true
 triggers:
 - id: hi_eqHZLMD
+steps:
+- namespace: update_cell
+  runtime: nodejs20.x
+  uses: google_sheets-update-cell@0.1.2
+  props:
+    googleSheets:
+      authProvisionId: apn_DphexA
+    sheetId:
+      __lv:
+        label: Guestbook
+        value: 1RLspI8iuC-Ng8Fco8zV-ynpxdPLm7MgoXm5jnlo0Tpk
+    cell: "{{steps.trigger.event.query.range.split(':').pop()}}"
+    newCell: 'TRUE'
+- namespace: code
+  runtime: nodejs20.x
+  uses: "./code/entry.js"
 
