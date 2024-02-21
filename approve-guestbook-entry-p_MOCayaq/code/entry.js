@@ -2,7 +2,7 @@
 export default defineComponent({
   async run({ steps, $ }) {
     await $.respond({
-      status: 200,
+      status: 302,
       headers: {
         'Location':'https://www.raymondcamden.com/guestbook'
       },
