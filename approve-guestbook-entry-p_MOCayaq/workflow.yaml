@@ -1,0 +1,7 @@
+schema: workflow/2022.04
+name: Approve Guestbook Entry
+settings:
+  error_notification: true
+triggers:
+- id: hi_eqHZLMD
+
