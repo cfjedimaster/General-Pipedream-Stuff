@@ -25,4 +25,14 @@ steps:
     col_0001: "{{steps.trigger.event.body.comment}}"
     col_0002: "{{Date.now()}}"
     col_0003: 'FALSE'
+- namespace: create_email_body
+  runtime: nodejs20.x
+  uses: "./create_email_body/entry.js"
+- namespace: send_email_to_self
+  runtime: nodejs20.x
+  uses: email-send-email-to-self@0.4.4
+  props:
+    subject: New Guestbook Entry
+    text: "{{steps.create_email_body.$return_value}}"
+    html: "{{steps.create_email_body.$return_value}}"
 
