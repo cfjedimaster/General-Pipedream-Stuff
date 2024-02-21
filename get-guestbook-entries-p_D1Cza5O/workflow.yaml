@@ -1,0 +1,29 @@
+schema: workflow/2022.04
+name: Get Guestbook Entries
+settings:
+  error_notification: true
+triggers:
+- id: hi_LmHb2QJ
+steps:
+- namespace: get_values_in_range
+  runtime: nodejs20.x
+  uses: google_sheets-get-values-in-range@0.1.2
+  props:
+    googleSheets:
+      authProvisionId: apn_DphexA
+    sheetId:
+      __lv:
+        label: Guestbook
+        value: 1RLspI8iuC-Ng8Fco8zV-ynpxdPLm7MgoXm5jnlo0Tpk
+    sheetName:
+      __lv:
+        label: Sheet1
+        value: Sheet1
+    range: A2:C10000
+- namespace: filter_and_map
+  runtime: nodejs20.x
+  uses: "./filter_and_map/entry.js"
+- namespace: return_approved
+  runtime: nodejs20.x
+  uses: "./return_approved/entry.js"
+
