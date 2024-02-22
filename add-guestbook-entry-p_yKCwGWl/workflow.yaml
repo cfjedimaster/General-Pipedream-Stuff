@@ -21,8 +21,8 @@ steps:
         label: Sheet1
         value: Sheet1
     hasHeaders: 'Yes'
-    col_0000: "{{steps.trigger.event.body.name}}"
-    col_0001: "{{steps.trigger.event.body.comment}}"
+    col_0000: "{{steps.trigger.event.body.name.replace(/<.*?>/g,'')}}"
+    col_0001: "{{steps.trigger.event.body.comment.replace(/<.*?>/g,'')}}"
     col_0002: "{{Date.now()}}"
     col_0003: 'FALSE'
 - namespace: create_email_body
