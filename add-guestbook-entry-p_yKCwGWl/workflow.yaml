@@ -5,6 +5,9 @@ settings:
 triggers:
 - id: hi_mJH1wmn
 steps:
+- namespace: validate
+  runtime: nodejs20.x
+  uses: "./validate/entry.js"
 - namespace: add_single_row
   runtime: nodejs20.x
   uses: google_sheets-add-single-row@2.1.2
