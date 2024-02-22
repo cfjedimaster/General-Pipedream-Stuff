@@ -10,11 +10,11 @@ export default defineComponent({
 The following information was submitted:
 </p>
 <p>
-Name: <b>${steps.trigger.event.body.name}</b>
+Name: <b>${steps.trigger.event.body.name.replace(/<.*?>/g,'')}</b>
 </p>
 <p>
 Comments:<br/>
-<b>${steps.trigger.event.body.comment}</b>
+<b>${steps.trigger.event.body.comment.replace(/<.*?>/g,'')}</b>
 </p>
 
 <p>
