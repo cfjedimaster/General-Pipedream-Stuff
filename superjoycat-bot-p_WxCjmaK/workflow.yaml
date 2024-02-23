@@ -1,0 +1,30 @@
+schema: workflow/2022.04
+name: SuperJoyCat Bot
+settings:
+  error_notification: true
+  lambda_timeout: 45
+triggers:
+- id: ti_RBTVy8M
+steps:
+- namespace: getCatUrl
+  runtime: nodejs20.x
+  uses: "./getCatUrl/entry.js"
+- namespace: download_file_to_tmp
+  runtime: nodejs20.x
+  uses: helper_functions-download-file-to-tmp@0.3.0
+  props:
+    url: "{{steps.getCatUrl.$return_value}}"
+    filename: cat.jpg
+- namespace: defineMessages
+  runtime: nodejs20.x
+  uses: "./defineMessages/entry.js"
+- namespace: selectMessage
+  runtime: nodejs20.x
+  uses: helper_functions-random-item-from-list@0.0.3
+  props:
+    list: "{{steps.defineMessages.$return_value}}"
+    quantity: 1
+- namespace: postToot
+  runtime: nodejs20.x
+  uses: "./postToot/entry.js"
+
