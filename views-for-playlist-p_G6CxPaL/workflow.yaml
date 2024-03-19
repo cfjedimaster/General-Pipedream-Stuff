@@ -1,0 +1,18 @@
+schema: workflow/2022.04
+name: Views for Playlist
+settings:
+  error_notification: true
+triggers:
+- id: hi_QdHlWPX
+steps:
+- namespace: youtube_analytics_api
+  runtime: nodejs20.x
+  uses: "./youtube_analytics_api/entry.js"
+  props:
+    youtube_analytics_api:
+      authProvisionId: apn_P8hDdwg
+    playlistId: PL_z-rqJYNijqhtPcEbwacp34TiFfb8eyO
+- namespace: code
+  runtime: nodejs20.x
+  uses: "./code/entry.js"
+
