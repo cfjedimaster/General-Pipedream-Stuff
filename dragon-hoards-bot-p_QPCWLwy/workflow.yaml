@@ -1,0 +1,18 @@
+schema: workflow/2022.04
+name: Dragon Hoards Bot
+settings:
+  error_notification: true
+  lambda_timeout: 45
+triggers:
+- id: ti_PxT0Zm8
+steps:
+- namespace: generateStory
+  runtime: nodejs20.x
+  uses: "./generateStory/entry.js"
+- namespace: postToot
+  runtime: nodejs20.x
+  uses: "./postToot/entry.js"
+- namespace: postBluesky
+  runtime: nodejs20.x
+  uses: "./postBluesky/entry.js"
+
