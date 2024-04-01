@@ -100,6 +100,7 @@ export default defineComponent({
     for(let i=0;i<3;i++) {
        hoards.push(getHoard())
     }
+    
     let hoardStr = `${hoards[0]}, ${hoards[1]}, and ${hoards[2]}`;
     
   	return `${indefinite(type, {capitalize:true})} dragon lives ${getLocation()}. She ${getVerb()} her hoard, which consists of ${hoardStr}. She feels ${getFeeling()}.`;
