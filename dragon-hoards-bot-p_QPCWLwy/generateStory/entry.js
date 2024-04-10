@@ -25,7 +25,7 @@ const locations = [
 
 const verbs = [
   "sees", "explores", "sorts", "inventories", "loves", "estimates", "guards", 
-  "tallies", "reminisces over", "regards", "proud of", "looks over","searches", "investigates",
+  "tallies", "reminisces over", "regards", "looks over","searches", "investigates",
   "is proud of", "examines", "fiddles with", "counts","admires","loves","admires",
 ];
 
