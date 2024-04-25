@@ -1,0 +1,26 @@
+schema: workflow/2022.04
+name: Weekly Spotify Report
+settings:
+  error_notification: true
+  lambda_timeout: 60
+triggers:
+- id: sub_M2U0dm2
+- id: ti_QAT0mBp
+steps:
+- namespace: lastWeekTimestamp
+  disabled: true
+  runtime: nodejs20.x
+  uses: "./lastWeekTimestamp/entry.js"
+- namespace: getTopArtists
+  runtime: nodejs20.x
+  uses: "./getTopArtists/entry.js"
+  props:
+    spotify:
+      authProvisionId: apn_3JhQwL
+- namespace: getTopTracks
+  runtime: nodejs20.x
+  uses: "./getTopTracks/entry.js"
+  props:
+    spotify:
+      authProvisionId: apn_3JhQwL
+
