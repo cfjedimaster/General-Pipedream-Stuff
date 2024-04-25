@@ -1,0 +1,30 @@
+schema: workflow/2022.04
+name: Suggest Next Movie
+settings:
+  error_notification: true
+triggers:
+- id: ti_ypTV6Ny
+steps:
+- namespace: get_films
+  runtime: nodejs20.x
+  uses: rss-merge-rss-feeds@1.2.6
+  props:
+    urls:
+    - https://letterboxd.com/raymondcamden/rss/
+- namespace: generatePrompt
+  runtime: nodejs20.x
+  uses: "./generatePrompt/entry.js"
+- namespace: generateResponse
+  runtime: nodejs20.x
+  uses: "./generateResponse/entry.js"
+- namespace: generateEmail
+  runtime: nodejs20.x
+  uses: "./generateEmail/entry.js"
+- namespace: send_email_to_self
+  runtime: nodejs20.x
+  uses: email-send-email-to-self@0.4.4
+  props:
+    subject: Film Recommendations
+    text: "{{steps.generateEmail.$return_value}}"
+    html: "{{steps.generateEmail.$return_value}}"
+
