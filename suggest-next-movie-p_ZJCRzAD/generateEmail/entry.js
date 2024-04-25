@@ -4,7 +4,7 @@ export default defineComponent({
 <h2>Movie Recommendations</h2>
 
 <p>
-The last movie you watched was ${steps.generatePrompt.title}. I asked Google Gemini what you should watch next
+The last movie you watched was "${steps.generatePrompt.title}". I asked Google Gemini what you should watch next
 and this is what it recommended:
 </p>
     `;
