@@ -58,7 +58,7 @@ Your response should be a JSON object containing an array of recommendations in 
 
 * title: The title of the movie.
 * year: The year it was released.
-* reason: A one setence explanation for why the film was recommended.
+* reason: A one sentence explanation for why the film was recommended.
     `;
     
     const genAI = new GoogleGenerativeAI(API_KEY);
