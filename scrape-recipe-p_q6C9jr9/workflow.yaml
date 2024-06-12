@@ -1,0 +1,21 @@
+schema: workflow/2022.04
+name: Scrape Recipe
+settings:
+  error_notification: true
+triggers:
+- id: hi_4EHYOJM
+steps:
+- namespace: End_if_no_url_in_query
+  runtime: nodejs20.x
+  uses: filter-continue-based-on-condition@0.0.2
+  _props_cursor: dyp_bJUaLr9
+  props:
+    initialValue: "{{steps.trigger.event.query.url}}"
+    condition: 'TRUE'
+- namespace: find_ldjson
+  runtime: nodejs20.x
+  uses: "./find_ldjson/entry.js"
+- namespace: find_recipe
+  runtime: nodejs20.x
+  uses: "./find_recipe/entry.js"
+
