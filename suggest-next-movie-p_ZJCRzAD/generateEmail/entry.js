@@ -9,7 +9,7 @@ and this is what it recommended:
 </p>
     `;
 
-    for(let film of steps.generateResponse.$return_value) {
+    for(let film of steps.generateResponse.$return_value.recommendations) {
       html += `
  <h3>${film.title} (${film.year})</h3>
 

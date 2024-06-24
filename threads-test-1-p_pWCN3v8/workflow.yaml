@@ -1,0 +1,7 @@
+schema: workflow/2022.04
+name: Threads Test 1
+settings:
+  error_notification: true
+triggers:
+- id: hi_12Haq8L
+
