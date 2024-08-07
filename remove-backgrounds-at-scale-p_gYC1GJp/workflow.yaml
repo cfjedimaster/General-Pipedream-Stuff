@@ -5,7 +5,22 @@ settings:
 triggers:
 - id: dc_yLuN8ap
 steps:
-- namespace: code
+- namespace: end_if_output
   runtime: nodejs20.x
-  uses: "./code/entry.js"
+  uses: "./end_if_output/entry.js"
+- namespace: generate_output_path
+  runtime: nodejs20.x
+  uses: "./generate_output_path/entry.js"
+- namespace: get_dropbox_upload_url
+  runtime: nodejs20.x
+  uses: "./get_dropbox_upload_url/entry.js"
+  props:
+    dropbox:
+      authProvisionId: apn_LMho37
+- namespace: get_access_token
+  runtime: nodejs20.x
+  uses: "./get_access_token/entry.js"
+- namespace: kickoff_remove_bg
+  runtime: nodejs20.x
+  uses: "./kickoff_remove_bg/entry.js"
 
