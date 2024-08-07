@@ -4,8 +4,4 @@ settings:
   error_notification: true
 triggers:
 - id: dc_yLuN8ap
-steps:
-- namespace: code
-  runtime: nodejs20.x
-  uses: "./code/entry.js"
 
