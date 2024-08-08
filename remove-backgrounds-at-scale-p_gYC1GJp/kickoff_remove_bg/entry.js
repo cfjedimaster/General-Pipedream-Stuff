@@ -13,7 +13,7 @@ export default defineComponent({
       		"overwrite": true
   		}
   	};
-  console.log(data);
+
   	let resp = await fetch('https://image.adobe.io/sensei/cutout', {
   		method: 'POST', 
   		headers: {
