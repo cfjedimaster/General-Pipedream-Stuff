@@ -47,7 +47,7 @@ steps:
   runtime: nodejs20.x
   uses: helper_functions-download-file-to-tmp@0.3.0
   props:
-    url: "{{steps.select_random_album_temp.$return_value.images[0].url}}"
+    url: "{{steps.select_random_album.$return_value.images[0].url}}"
     filename: cover.jpg
 - namespace: postToot
   runtime: nodejs20.x
