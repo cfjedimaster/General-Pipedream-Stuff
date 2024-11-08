@@ -6,7 +6,7 @@ export default defineComponent({
 
     const M = new Mastodon({
       access_token: process.env.RANDOMALBUMCOVER_MASTODON,
-      api_url: 'https://botsin.space/api/v1/', 
+      api_url: 'https://mastodon.social/api/v1/', 
     });
 
     let artists = steps.select_random_album.$return_value.artists.reduce((cur, art) => {
