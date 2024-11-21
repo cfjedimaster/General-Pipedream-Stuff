@@ -6,7 +6,7 @@ export default defineComponent({
 
       const M = new Mastodon({
         access_token: process.env.CAT_BOT_MASTODON,
-        api_url: 'https://botsin.space/api/v1/', 
+        api_url: 'https://mastodon.social/api/v1/', 
       });
 
       let resp = await M.post('media', { file: fs.createReadStream('/tmp/cat.jpg') });
