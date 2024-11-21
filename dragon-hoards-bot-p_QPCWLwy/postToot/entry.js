@@ -5,7 +5,7 @@ export default defineComponent({
 
    const M = new Mastodon({
       access_token: process.env.DRAGONHOARDS_MASTODON,
-      api_url: 'https://botsin.space/api/v1/', 
+      api_url: 'https://mastodon.social/api/v1/', 
     });
 
 
