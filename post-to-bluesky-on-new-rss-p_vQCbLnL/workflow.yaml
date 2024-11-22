@@ -3,9 +3,12 @@ name: Post to Bluesky on New RSS
 settings:
   error_notification: true
 triggers:
-- id: dc_GQudzQg
+- id: dc_8PuRA4G
 steps:
-- namespace: code
+- namespace: generateText
   runtime: nodejs20.x
-  uses: "./code/entry.js"
+  uses: "./generateText/entry.js"
+- namespace: postToBlueSky
+  runtime: nodejs20.x
+  uses: "./postToBlueSky/entry.js"
 

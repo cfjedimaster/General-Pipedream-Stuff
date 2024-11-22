@@ -4,13 +4,13 @@
 export default defineComponent({
   async run({ steps, $ }) {
 
-      return {
+ return {
       text: `
 New post from my blog: "${steps["trigger"]["event"]["title"]}"
 
 ${steps["trigger"]["event"]["link"]}
       `
     }
-
+    
   },
 })
