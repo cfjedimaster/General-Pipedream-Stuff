@@ -1,5 +1,6 @@
 schema: workflow/2022.04
 name: Post to Bluesky on New RSS
+inactive: true
 settings:
   error_notification: true
 triggers:
