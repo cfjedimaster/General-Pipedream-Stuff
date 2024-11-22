@@ -3,4 +3,13 @@ name: Post to Bluesky on New RSS
 inactive: true
 settings:
   error_notification: true
+triggers:
+- id: dc_gzum4lN
+steps:
+- namespace: generateText
+  runtime: nodejs20.x
+  uses: "./generateText/entry.js"
+- namespace: postToBluesky
+  runtime: nodejs20.x
+  uses: "./postToBluesky/entry.js"
 
