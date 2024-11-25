@@ -28,15 +28,14 @@ export default defineComponent({
     let html = await req.text();
     let $$ = cheerio.load(html);
 
-    card.description = $$('meta[name="og:description"]').attr('content');
-    
-    let image = $$('meta[name="og:image"]').attr('content');
+    card.description = $$('meta[property="og:description"]').attr('content');
+    let image = $$('meta[property="og:image"]').attr('content');
 
     let blob = await fetch(image).then(r => r.blob());
     let { data } = await agent.uploadBlob(blob, { encoding:'image/jpeg'} );
 
     card.thumb = data.blob;
-    
+
     await agent.post({
       text: rt.text,
       facets: rt.facets,
@@ -47,8 +46,7 @@ export default defineComponent({
         external:card
       }
     })
-      
-    // Reference previous step data using the steps object and return data to use it in future steps
+
     return steps.trigger.event
   },
 })
