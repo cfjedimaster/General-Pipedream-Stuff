@@ -1,0 +1,65 @@
+schema: workflow/2022.04
+name: Lafayette Traffic Bot
+settings:
+  error_notification: true
+triggers:
+- id: ti_KbTB9Z0
+steps:
+- namespace: getIncidents
+  runtime: nodejs20.x
+  uses: http-custom-request@1.1.1
+  props:
+    httpRequest:
+      auth:
+        type: integrated_auth
+        username: ''
+        password: ''
+        token: ''
+        app:
+          id: app_X7LhNG
+          nameSlug: http
+          authType:
+        integratedAuth:
+          mask:
+            auth:
+              basicPassword: ''
+              basicUsername: ''
+              bearerToken: ''
+              type:
+            headers: []
+            params: []
+            bodyParams: []
+      body:
+        contentType: none
+        fields: []
+        mode: fields
+        type: raw
+      headers: []
+      method: GET
+      params:
+      - name: ''
+        value: ''
+        disabled: true
+      url: " https://getincidents2025.raymondcamden.workers.dev"
+      tab: Auth
+- namespace: filterToNew
+  notes: 'This code looks at the incidents returned and filters out any that happened
+    AFTER the most recent reported. '
+  runtime: nodejs20.x
+  uses: "./filterToNew/entry.js"
+  props:
+    data:
+      storeId: ds_5lud5n8
+- namespace: endIfEmpty
+  runtime: nodejs20.x
+  uses: "./endIfEmpty/entry.js"
+- namespace: postBluesky
+  runtime: nodejs20.x
+  uses: "./postBluesky/entry.js"
+- namespace: updateLastRan
+  runtime: nodejs20.x
+  uses: "./updateLastRan/entry.js"
+  props:
+    data:
+      storeId: ds_5lud5n8
+
