@@ -9,6 +9,9 @@ steps:
 - namespace: generateStory
   runtime: nodejs20.x
   uses: "./generateStory/entry.js"
+- namespace: generateImage
+  runtime: nodejs20.x
+  uses: "./generateImage/entry.js"
 - namespace: postToot
   runtime: nodejs20.x
   uses: "./postToot/entry.js"
