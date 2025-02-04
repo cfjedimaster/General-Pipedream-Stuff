@@ -1,0 +1,42 @@
+schema: workflow/2022.04
+name: Improve at Scale - Cloudinary
+settings:
+  error_notification: true
+triggers:
+- id: dc_lVuenDY
+steps:
+- namespace: end_if_output
+  runtime: python3.12
+  uses: "./end_if_output/entry.py"
+- namespace: upload_media_asset
+  runtime: nodejs20.x
+  uses: cloudinary-upload-media-asset@1.0.0
+  props:
+    cloudinary:
+      authProvisionId: apn_KAhmAvn
+    file: "{{steps.trigger.event.link}}"
+- namespace: image_transformation
+  runtime: nodejs20.x
+  uses: cloudinary-image-transformation@0.1.2
+  props:
+    cloudinary:
+      authProvisionId: apn_KAhmAvn
+    imageSource: "{{steps.upload_media_asset.$return_value.public_id}}"
+    options:
+      effect: improve
+      width: '650'
+- namespace: get_url_and_download
+  runtime: python3.12
+  uses: "./get_url_and_download/entry.py"
+- namespace: upload_file
+  runtime: nodejs20.x
+  uses: dropbox-upload-file@0.0.13
+  props:
+    dropbox:
+      authProvisionId: apn_LMho37
+    path: "/ImproveImageProcess/output"
+    name: "{{steps.trigger.event.name}}"
+    filePath: "/tmp/{{steps.trigger.event.name}}"
+    strictConflict: false
+    mode: overwrite
+
