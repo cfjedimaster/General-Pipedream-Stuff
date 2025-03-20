@@ -1,45 +1,43 @@
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import fs from 'fs';
 
 export default defineComponent({
   async run({ steps, $ }) {
 
-      let API_KEY = process.env.GOOGLE_API_KEY;
-    
-      let body = {
-      	instances: [
-      		{ prompt: steps.generateStory.$return_value },
-      	],
-      	parameters: {
-      		aspectRatio:'1:1',
-          sampleCount: 1
-      	}
-      };
+      const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
 
-      let model_name = 'imagen-3.0-generate-002';
-      let resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model_name}:predict?key=${API_KEY}`, {
-        method: 'POST',
-        headers: {
-      	'Content-Type': 'application/json'
+      const model = genAI.getGenerativeModel({
+        model: "gemini-2.0-flash-exp-image-generation",
+        generationConfig: {
+            responseModalities: ['Text', 'Image']
         },
-        body: JSON.stringify(body)
       });
-          
-      let result = await resp.json();
-      if(result.error) {
-        console.log(result);
+
+      let contents = `
+      Generate an image of the following and do not include any text: 
+      
+      ${steps.generateStory.$return_value}
+      `;
+
+      try {
+        const response = await model.generateContent(contents);
+      
+        let file = '/tmp/temp.png';
+        
+        for (const part of  response.response.candidates[0].content.parts) {
+          if (part.inlineData) {
+            // in theory this may run N times, but its ok
+            const imageData = part.inlineData.data;
+            const buffer = Buffer.from(imageData, 'base64');
+            fs.writeFileSync(file, buffer);
+          }
+        }
+      
+        return file;
+      } catch(e) {
+        console.log('failed to generate', e);
         return '';
       }
-    
-      let file = '/tmp/temp.png';
-      if(result.predictions.length) {
-        if(result.predictions[0].mimeType == 'image/jpeg') {
-          file = '/tmp/temp.jpg';
-        }
-        
-        let buffer = Buffer.from(result.predictions[0].bytesBase64Encoded, 'base64');
-        fs.writeFileSync(file, buffer);            
-      }
-
-      return file;
+      
   },
 })
