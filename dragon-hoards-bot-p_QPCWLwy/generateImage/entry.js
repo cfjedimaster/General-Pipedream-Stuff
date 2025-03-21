@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import fs from 'fs';
+import sharp from 'sharp';
 
 export default defineComponent({
   async run({ steps, $ }) {
@@ -30,6 +31,7 @@ export default defineComponent({
             const imageData = part.inlineData.data;
             const buffer = Buffer.from(imageData, 'base64');
             fs.writeFileSync(file, buffer);
+            await sharp(file).resize({width:600}).toFile(file);
           }
         }
       
