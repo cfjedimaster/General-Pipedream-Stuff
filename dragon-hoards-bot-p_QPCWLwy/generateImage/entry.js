@@ -23,21 +23,21 @@ export default defineComponent({
       try {
         const response = await model.generateContent(contents);
       
-        let file = '/tmp/temp.png';
-        
+        let file = '/tmp/temp_initial.png';
+        let file_final = '/tmp/temp.png';
         for (const part of  response.response.candidates[0].content.parts) {
           if (part.inlineData) {
             // in theory this may run N times, but its ok
             const imageData = part.inlineData.data;
             const buffer = Buffer.from(imageData, 'base64');
             fs.writeFileSync(file, buffer);
-            await sharp(file).resize({width:600}).toFile(file);
+            await sharp(file).resize({width:600}).toFile(file_final);
           }
         }
       
-        return file;
+        return file_final;
       } catch(e) {
-        console.log('failed to generate', e);
+        console.log('failed to generate', e.message, e.detail);
         return '';
       }
       
