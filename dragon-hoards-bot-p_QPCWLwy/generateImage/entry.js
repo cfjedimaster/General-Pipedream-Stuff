@@ -31,7 +31,7 @@ export default defineComponent({
             const imageData = part.inlineData.data;
             const buffer = Buffer.from(imageData, 'base64');
             fs.writeFileSync(file, buffer);
-            await sharp(file).resize({width:500}).toFile(file_final);
+            await sharp(file).resize({width:450}).toFile(file_final);
           }
         }
       
