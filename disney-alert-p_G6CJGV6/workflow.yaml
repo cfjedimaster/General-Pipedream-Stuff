@@ -1,5 +1,6 @@
 schema: workflow/2022.04
 name: Disney Alert
+inactive: true
 settings:
   error_notification: true
 triggers:
