@@ -1,0 +1,28 @@
+schema: workflow/2022.04
+name: Disney Alert
+settings:
+  error_notification: true
+triggers:
+- id: ti_elTAVLp
+steps:
+- namespace: getWaitTimes
+  runtime: python3.12
+  uses: "./getWaitTimes/entry.py"
+- namespace: generateMsg
+  runtime: python3.12
+  uses: "./generateMsg/entry.py"
+- namespace: send_push
+  runtime: nodejs20.x
+  uses: pushbullet-send-push@0.0.1
+  _props_cursor: dyp_qZUpoKJ
+  props:
+    pushbullet:
+      authProvisionId: apn_z8hxQQX
+    device:
+      __lv:
+        label: Samsung SM-S928U1
+        value: ujDELIICNzwsjELypJ0jJY
+    type: note
+    title: Ride Alert
+    body: "{{steps.generateMsg.$return_value}}"
+
