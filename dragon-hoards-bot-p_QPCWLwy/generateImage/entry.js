@@ -5,6 +5,10 @@ import sharp from 'sharp';
 export default defineComponent({
   async run({ steps, $ }) {
 
+      /*
+      As of June 3, 2025, decided to remove this functionality. Keeping the code in case I change my mind.
+      */
+      return '';
       const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
 
       const model = genAI.getGenerativeModel({
