@@ -1,4 +1,4 @@
-import { puppeteer } from '@pipedream/browsers';
+import { playwright } from '@pipedream/browsers';
 import { wrap, configure } from 'agentql';
 
 export default defineComponent({
@@ -8,7 +8,8 @@ export default defineComponent({
 {
   recipe {
       ingredients[] {
-        qty
+        qty(as number)
+        unitOfMeasurement
         name
       }
       steps
@@ -17,9 +18,9 @@ export default defineComponent({
 `;
     
     configure({ apiKey: process.env.AGENTQL_API_KEY });
-    const browser = await puppeteer.browser();
+    const browser = await playwright.browser();
     const page = await browser.newPage();
-
+    
     const agentqlPage = await wrap(page);
     await agentqlPage.goto('https://www.allrecipes.com/recipe/12682/apple-pie-by-grandma-ople/');
 
