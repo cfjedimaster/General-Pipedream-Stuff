@@ -1,0 +1,11 @@
+schema: workflow/2022.04
+name: Scrape Recipe with AgentQL
+settings:
+  error_notification: true
+triggers:
+- id: hi_5nHdaeG
+steps:
+- namespace: code
+  runtime: nodejs20.x
+  uses: "./code/entry.js"
+
