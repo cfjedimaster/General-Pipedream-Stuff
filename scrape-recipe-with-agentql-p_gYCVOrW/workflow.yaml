@@ -5,6 +5,18 @@ settings:
 triggers:
 - id: hi_5nHdaeG
 steps:
+- namespace: filter
+  runtime: nodejs20.x
+  uses: "./filter/entry.js"
+  props:
+    _filter:
+      continue: 'false'
+      rules:
+        t: and
+        r:
+        - a: "{{steps.trigger.event.query.url}}"
+          op: "!exist"
+          b: ''
 - namespace: code
   runtime: nodejs20.x
   uses: "./code/entry.js"
