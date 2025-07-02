@@ -4,17 +4,17 @@ import requests
 def handler(pd: "pipedream"):
   clientid = os.environ.get('FOXIT_CLIENT_ID')
   secret = os.environ.get('FOXIT_CLIENT_SECRET')
+  HOST = os.environ.get('FOXIT_HOST')
+  
+  headers = {
+    "client_id":clientid,
+    "client_secret":secret
+  }
 
-	headers = {
-		"client_id":id,
-		"client_secret":secret
-	}
-
-	with open(path, 'rb') as f:
+  with open(pd.steps['download_to_tmp']['$return_value'], 'rb') as f:
     print(pd.steps['download_to_tmp']['$return_value'])
-		files = {'file': (pd.steps['download_to_tmp']['$return_value'], f)}
+    files = {'file': (pd.steps['download_to_tmp']['$return_value'], f)}
 
-		request = requests.post(f"{HOST}/pdf-services/api/documents/upload", files=files, headers=headers)
+    request = requests.post(f"{HOST}/pdf-services/api/documents/upload", files=files, headers=headers)
 
-		return request.json()
-
+    return request.json()
