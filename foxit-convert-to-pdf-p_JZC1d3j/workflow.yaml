@@ -23,4 +23,25 @@ steps:
 - namespace: upload_to_foxit
   runtime: python3.12
   uses: "./upload_to_foxit/entry.py"
+- namespace: create_conversion_job
+  runtime: python3.12
+  uses: "./create_conversion_job/entry.py"
+- namespace: check_job
+  runtime: python3.12
+  uses: "./check_job/entry.py"
+- namespace: download_result_to_tmp
+  runtime: python3.12
+  uses: "./download_result_to_tmp/entry.py"
+- namespace: upload_result
+  runtime: nodejs20.x
+  uses: dropbox-upload-file@1.0.0
+  props:
+    dropbox:
+      authProvisionId: apn_LMho37
+    path:
+      __lv:
+        label: "/Foxit"
+        value: "/foxit"
+    name: output/{{steps.download_result_to_tmp.$return_value.filename}}
+    filePath: "{{steps.download_result_to_tmp.$return_value.path}}"
 
