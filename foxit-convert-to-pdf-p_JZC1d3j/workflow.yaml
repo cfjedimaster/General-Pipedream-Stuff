@@ -1,0 +1,26 @@
+schema: workflow/2022.04
+name: Foxit - Convert to PDF
+settings:
+  error_notification: true
+triggers:
+- id: dc_kjuXKJk
+steps:
+- namespace: End_if_output
+  runtime: nodejs20.x
+  uses: "./End_if_output/entry.js"
+  props:
+    _filter:
+      continue: 'false'
+      rules:
+        t: and
+        r:
+        - a: "{{steps.trigger.event.path_display}}"
+          op: str/
+          b: "/output/"
+- namespace: download_to_tmp
+  runtime: python3.12
+  uses: "./download_to_tmp/entry.py"
+- namespace: upload_to_foxit
+  runtime: python3.12
+  uses: "./upload_to_foxit/entry.py"
+
