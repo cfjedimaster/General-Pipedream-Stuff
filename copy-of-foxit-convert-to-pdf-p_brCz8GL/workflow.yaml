@@ -4,18 +4,7 @@ inactive: true
 settings:
   error_notification: true
 triggers:
-- id: sub_7gUrexE
-  uses: sc_v4ieJMb
-  props:
-    dropbox:
-      authProvisionId: apn_LMho37
-    includeLink: false
-    includeMediaInfo: false
-    path:
-      __lv:
-        label: "/Foxit"
-        value: "/foxit"
-    recursive: true
+- id: dc_eKuaDzN
 steps:
 - namespace: End_if_output
   runtime: nodejs20.x
