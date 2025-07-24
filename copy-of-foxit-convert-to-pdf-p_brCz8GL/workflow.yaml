@@ -1,6 +1,5 @@
 schema: workflow/2022.04
 name: Office to PDF Workflow with Foxit
-inactive: true
 settings:
   error_notification: true
 triggers:
