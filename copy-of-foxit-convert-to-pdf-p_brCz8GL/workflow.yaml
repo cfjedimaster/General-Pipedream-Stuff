@@ -1,10 +1,21 @@
 schema: workflow/2022.04
-name: Foxit - Convert to PDF
+name: Office to PDF Workflow with Foxit
 inactive: true
 settings:
   error_notification: true
 triggers:
-- id: dc_kjuXKJk
+- id: sub_7gUrexE
+  uses: sc_v4ieJMb
+  props:
+    dropbox:
+      authProvisionId: apn_LMho37
+    includeLink: false
+    includeMediaInfo: false
+    path:
+      __lv:
+        label: "/Foxit"
+        value: "/foxit"
+    recursive: true
 steps:
 - namespace: End_if_output
   runtime: nodejs20.x
