@@ -44,4 +44,5 @@ steps:
         value: "/foxit"
     name: output/{{steps.download_result_to_tmp.$return_value.filename}}
     filePath: "{{steps.download_result_to_tmp.$return_value.path}}"
+    mode: overwrite
 
