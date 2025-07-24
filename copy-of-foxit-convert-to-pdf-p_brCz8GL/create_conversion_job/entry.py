@@ -22,16 +22,16 @@ def handler(pd: "pipedream"):
   print(extension) 
 
   api = None 
-  if extension == "docx":
+  if extension == ".docx":
     api = "/pdf-services/api/documents/create/pdf-from-word"
-  elif extension == "xlsx":
+  elif extension == ".xlsx":
     api = "/pdf-services/api/documents/create/pdf-from-excel"
-  elif extension == "pptx":
+  elif extension == ".pptx":
     api = "/pdf-services/api/documents/create/pdf-from-ppt"
   else:
     pd.flow.exit(f"Exiting workflow due to unknow extension: {extension}.")
-  
-  # To Do - consider branching logic based on doc type for input
+
+  print(f"{HOST}{api}")
   request = requests.post(f"{HOST}{api}", json=body, headers=headers)
   return request.json()
 
