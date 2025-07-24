@@ -29,7 +29,7 @@ def handler(pd: "pipedream"):
   elif extension == ".pptx":
     api = "/pdf-services/api/documents/create/pdf-from-ppt"
   else:
-    pd.flow.exit(f"Exiting workflow due to unknow extension: {extension}.")
+    return pd.flow.exit(f"Exiting workflow due to unknow extension: {extension}.")
 
   print(f"{HOST}{api}")
   request = requests.post(f"{HOST}{api}", json=body, headers=headers)
