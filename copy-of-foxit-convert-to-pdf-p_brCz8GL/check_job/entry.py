@@ -21,13 +21,11 @@ def handler(pd: "pipedream"):
     status = request.json()
     if status["status"] == "COMPLETED":
       done = True
-      # really only need resultDocumentId, will address later
       return status
     elif status["status"] == "FAILED":
       print("Failure. Here is the last status:")
       print(status)
-      pd.flow.exit("Failure in job")
-      sys.exit()
+      return pd.flow.exit("Failure in job")
     else:
       print(f"Current status, {status['status']}, percentage: {status['progress']}")
       sleep(5)
