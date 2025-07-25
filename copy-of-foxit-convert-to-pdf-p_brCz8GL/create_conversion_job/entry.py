@@ -17,9 +17,6 @@ def handler(pd: "pipedream"):
     "documentId": pd.steps['upload_to_foxit']['$return_value']['documentId']
   }
 
-  base, extension = os.path.splitext(pd.steps['trigger']['event']['name'])
-  print(extension) 
-
   api = pd.steps['extension_check']['$return_value']['api']
   
   print(f"{HOST}{api}")
