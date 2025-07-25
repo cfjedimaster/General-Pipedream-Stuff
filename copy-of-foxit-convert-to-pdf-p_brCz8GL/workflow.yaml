@@ -5,9 +5,9 @@ settings:
 triggers:
 - id: dc_eKuaDzN
 steps:
-- namespace: End_if_output
+- namespace: end_if_output
   runtime: nodejs20.x
-  uses: "./End_if_output/entry.js"
+  uses: "./end_if_output/entry.js"
   props:
     _filter:
       continue: 'false'
@@ -17,6 +17,9 @@ steps:
         - a: "{{steps.trigger.event.path_display}}"
           op: str/
           b: "/output/"
+- namespace: extension_check
+  runtime: python3.12
+  uses: "./extension_check/entry.py"
 - namespace: download_to_tmp
   runtime: python3.12
   uses: "./download_to_tmp/entry.py"
