@@ -12,7 +12,6 @@ def handler(pd: "pipedream"):
   }
 
   with open(pd.steps['download_to_tmp']['$return_value'], 'rb') as f:
-    print(pd.steps['download_to_tmp']['$return_value'])
     files = {'file': (pd.steps['download_to_tmp']['$return_value'], f)}
 
     request = requests.post(f"{HOST}/pdf-services/api/documents/upload", files=files, headers=headers)
