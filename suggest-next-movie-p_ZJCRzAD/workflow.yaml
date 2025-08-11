@@ -1,5 +1,6 @@
 schema: workflow/2022.04
 name: Suggest Next Movie
+inactive: true
 settings:
   error_notification: true
 triggers:
