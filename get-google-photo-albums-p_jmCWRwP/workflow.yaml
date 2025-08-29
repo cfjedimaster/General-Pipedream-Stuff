@@ -1,0 +1,14 @@
+schema: workflow/2022.04
+name: Get Google Photo Albums
+settings:
+  error_notification: true
+triggers:
+- id: hi_kvH6Gyl
+steps:
+- namespace: google_photos
+  runtime: nodejs20.x
+  uses: "./google_photos/entry.js"
+  props:
+    google_photos:
+      authProvisionId: apn_z8h1AD
+
