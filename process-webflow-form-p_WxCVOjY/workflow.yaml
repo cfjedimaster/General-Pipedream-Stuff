@@ -1,0 +1,14 @@
+schema: workflow/2022.04
+name: Process Webflow Form
+settings:
+  error_notification: true
+triggers:
+- id: hi_ERHL19x
+steps:
+- namespace: confirm_webhook_key
+  runtime: python3.12
+  uses: "./confirm_webhook_key/entry.py"
+- namespace: create_gb_item
+  runtime: python3.12
+  uses: "./create_gb_item/entry.py"
+
