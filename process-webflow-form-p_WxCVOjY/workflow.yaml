@@ -11,4 +11,10 @@ steps:
 - namespace: create_gb_item
   runtime: python3.12
   uses: "./create_gb_item/entry.py"
+- namespace: send_email_to_self
+  runtime: nodejs20.x
+  uses: email-send-email-to-self@0.4.5
+  props:
+    subject: New Guestbook Entry
+    text: "{{steps.create_gb_item.$return_value}}"
 
