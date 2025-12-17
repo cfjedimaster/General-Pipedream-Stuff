@@ -33,7 +33,9 @@ New Guestbook Entry:
 From: {form["Name"]}
 Entry: 
 {form["Entry"]}
-  """
+
+Approve at https://eowale5xcorn1zk.m.pipedream.net?id={newId}
+"""
 
   
 
