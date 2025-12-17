@@ -5,7 +5,15 @@ settings:
 triggers:
 - id: hi_2VH2BeW
 steps:
-- namespace: code
+- namespace: approve_gb
   runtime: python3.12
-  uses: "./code/entry.py"
+  uses: "./approve_gb/entry.py"
+- namespace: return_http_response
+  runtime: nodejs20.x
+  uses: http-return-http-response@0.0.4
+  props:
+    resStatusCode: 301
+    resHeaders:
+      Location: https://raymonds-cool-site-b78797.webflow.io/guestbook
+    resBody:
 
