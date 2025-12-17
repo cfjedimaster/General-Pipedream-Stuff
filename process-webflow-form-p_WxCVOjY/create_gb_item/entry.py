@@ -23,6 +23,10 @@ def handler(pd: "pipedream"):
         "fieldData": newEntry
   })
 
+  result = newGB.json()
+  newId = result["items"][0]["id"]
+  
+  
   return f"""
 New Guestbook Entry:
 
@@ -31,5 +35,5 @@ Entry:
 {form["Entry"]}
   """
 
-  #print(json.dumps(newGB.text))
+  
 
