@@ -1,4 +1,5 @@
 def handler(pd: "pipedream"):
   import random
 
-  return random.randint(0,1000)
+  # Switched to 900 cuz limit + offset <= 1000
+  return random.randint(0,900)
